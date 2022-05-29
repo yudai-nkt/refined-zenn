@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Refined Zenn",
+  "description": "Zennの機能やUIの一部を変更するChrome拡張機能です．",
+  "version": "0.1.0",
+  "content_scripts": [
+    {
+      "matches": ["https://zenn.dev/*"],
+      "js": ["esbuild/content-scripts/sticky-header.js"]
+    },
+    {
+      "matches": ["https://zenn.dev/*/articles/*"],
+      "js": ["esbuild/content-scripts/footnote-tooltip.js"]
+    }
+  ],
+  "options_ui": {
+    "page": "vite/options-ui/index.html",
+    "browser_style": true
+  },
+  "permissions": ["storage"]
+}
