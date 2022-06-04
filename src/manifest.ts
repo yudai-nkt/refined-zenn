@@ -15,6 +15,7 @@ export const manifest = defineManifest({
       js: [
         "src/content-scripts/footnote-tooltip.ts",
         "src/content-scripts/trim-leading-prompts-in-clipboard.ts",
+        "src/content-scripts/code-block-filename-as-caption.ts",
       ],
     },
   ],

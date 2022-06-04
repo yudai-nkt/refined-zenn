@@ -20,6 +20,12 @@ const options: OptionProps[] = [
     description:
       "ターミナル操作のコードブロックをコピーする際，行頭のプロンプトを自動で削除します．",
   },
+  {
+    id: "code-block-filename-as-caption",
+    title: "コードブロックのファイル名をキャプションとして表示",
+    description:
+      "コードブロックのファイル名部分に非ASCII文字が含まれる場合，ファイル名ではなくキャプションとみなしてサンセリフ体で表示します．",
+  },
 ];
 
 const style = css`
