@@ -1,6 +1,7 @@
 import { css } from "goober";
 import type { FunctionComponent } from "react";
 import { useChromeStorageLocal } from "use-chrome-storage";
+import { Switch } from "./Switch";
 
 export type OptionProps = {
   id: string;
@@ -25,22 +26,14 @@ export const Option: FunctionComponent<OptionProps> = ({
   description,
 }) => {
   const [checked, toggleCheck] = useChromeStorageLocal(id, false);
-  const handleChange = () => {
+  const handleChange = (_: boolean) => {
     toggleCheck((c) => !c);
   };
   return (
     <>
       <div className={headingContainer}>
         <h1 className={optionTitle}>{title}</h1>
-        <input
-          type="checkbox"
-          name={title}
-          id={id}
-          checked={checked}
-          onClick={(e) => {
-            handleChange();
-          }}
-        />
+        <Switch checked={checked} onCheckedChange={handleChange} />
       </div>
       <div>{description}</div>
     </>

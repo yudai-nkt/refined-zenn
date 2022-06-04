@@ -21,6 +21,7 @@
     "vite": "^2.9.9"
   },
   "dependencies": {
+    "@radix-ui/react-switch": "^0.1.6-rc.31",
     "goober": "^2.1.9",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
