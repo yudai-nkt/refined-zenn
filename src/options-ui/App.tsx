@@ -26,7 +26,7 @@ const options: OptionProps[] = [
     description:
       "コードブロックのファイル名部分に非ASCII文字が含まれる場合，ファイル名ではなくキャプションとみなしてサンセリフ体で表示します．",
   },
-];
+].sort((a, b) => a.id.localeCompare(b.id, "en"));
 
 const style = css`
   min-width: 480px;
