@@ -36,7 +36,7 @@ const style = css`
 `;
 
 export const App = () => (
-  <div class={style}>
+  <div className={style}>
     {options.map((opt, i) => (
       <Option {...opt} key={i} />
     ))}

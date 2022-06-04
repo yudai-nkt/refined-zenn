@@ -1,5 +1,5 @@
 import { css } from "goober";
-import type { FunctionComponent } from "preact";
+import type { FunctionComponent } from "react";
 import { useChromeStorageLocal } from "use-chrome-storage";
 
 export type OptionProps = {
@@ -30,8 +30,8 @@ export const Option: FunctionComponent<OptionProps> = ({
   };
   return (
     <>
-      <div class={headingContainer}>
-        <h1 class={optionTitle}>{title}</h1>
+      <div className={headingContainer}>
+        <h1 className={optionTitle}>{title}</h1>
         <input
           type="checkbox"
           name={title}
