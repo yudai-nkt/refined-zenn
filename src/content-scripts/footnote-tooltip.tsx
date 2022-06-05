@@ -1,6 +1,7 @@
 import { Tooltip } from "./components/tooltip";
 import { createRoot } from "react-dom/client";
 import { getConfig } from "../utils";
+import { css } from "goober";
 
 /**
  * Transform an array of {@link Node}s into a {@link JSX.Element}.
@@ -48,9 +49,29 @@ getConfig("footnote-tooltip").then((enabled) => {
       "section.footnotes > ol.footnotes-list > li.footnote-item > p"
     );
     let index = Math.min(footnoteRefs.length, footnoteItems.length);
+    /**
+     * Workaround for incorrect placement of tooltips. Since Radix UI's
+     * Popper component inlines the transformation using the `style`
+     * attribute, use of `!important` should be justified.
+     */
+    const adjustPlacement = (x: number, y: number) => css`
+      div[data-radix-popper-content-wrapper] {
+        transform: translate3d(${x}px, ${y}px, 0px) !important;
+      }
+    `;
+    const bboxSection = document
+      .querySelector("section")!
+      .getBoundingClientRect();
+
     while (index-- > 0) {
       const span = document.createElement("span");
       const footnoteRef = footnoteRefs[index];
+      const bboxRef = footnoteRef.getBoundingClientRect();
+      const [offsetX, offsetY] = [
+        bboxRef.left - bboxSection.left,
+        bboxRef.top - bboxSection.top,
+      ];
+      span.classList.add(adjustPlacement(offsetX + 12, offsetY + 24));
       const { id, href } = footnoteRef;
       const tooltipContent = nodesToJSX(
         [...footnoteItems[index].childNodes].filter(
