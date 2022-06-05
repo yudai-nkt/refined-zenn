@@ -9,15 +9,17 @@ export type OptionProps = {
   description: string;
 };
 
-const headingContainer = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const optionTitle = css`
-  font-size: 14px;
-  margin-bottom: 4px;
+const optionContainer = css`
+  color: #202124;
+  div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h1 {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
 `;
 
 export const Option: FunctionComponent<OptionProps> = ({
@@ -30,12 +32,12 @@ export const Option: FunctionComponent<OptionProps> = ({
     toggleCheck((c) => !c);
   };
   return (
-    <>
-      <div className={headingContainer}>
-        <h1 className={optionTitle}>{title}</h1>
+    <div className={optionContainer}>
+      <div>
+        <h1>{title}</h1>
         <Switch checked={checked} onCheckedChange={handleChange} />
       </div>
       <div>{description}</div>
-    </>
+    </div>
   );
 };

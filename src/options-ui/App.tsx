@@ -33,6 +33,9 @@ const style = css`
   min-height: 300px;
   padding-left: 12px;
   padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const App = () => (
