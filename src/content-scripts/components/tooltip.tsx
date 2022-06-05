@@ -3,7 +3,7 @@ import { css } from "goober";
 import type { ReactNode, FunctionComponent } from "react";
 
 type TooltipProps = Pick<HTMLAnchorElement, "href" | "id"> & {
-  index: number;
+  label: string;
   children: ReactNode;
 };
 
@@ -20,13 +20,13 @@ const contentStyle = css`
 `;
 
 export const Tooltip: FunctionComponent<TooltipProps> = ({
-  index,
+  label,
   children,
   ...anchorAttributes
 }) => (
   <RadixTooltip.Root>
     <RadixTooltip.Trigger>
-      <a {...anchorAttributes}>[{index}]</a>
+      <a {...anchorAttributes}>{label}</a>
     </RadixTooltip.Trigger>
     <RadixTooltip.Content className={contentStyle} align="start">
       {children}

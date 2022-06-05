@@ -42,13 +42,6 @@ const nodesToJSX = (nodes: Node[]): JSX.Element => (
 
 getConfig("footnote-tooltip").then((enabled) => {
   if (enabled) {
-    const footnoteRefs = document.querySelectorAll<HTMLAnchorElement>(
-      "sup.footnote-ref > a"
-    );
-    const footnoteItems = document.querySelectorAll(
-      "section.footnotes > ol.footnotes-list > li.footnote-item > p"
-    );
-    let index = Math.min(footnoteRefs.length, footnoteItems.length);
     /**
      * Workaround for incorrect placement of tooltips. Since Radix UI's
      * Popper component inlines the transformation using the `style`
@@ -63,29 +56,42 @@ getConfig("footnote-tooltip").then((enabled) => {
       .querySelector("section")!
       .getBoundingClientRect();
 
-    while (index-- > 0) {
-      const span = document.createElement("span");
-      const footnoteRef = footnoteRefs[index];
-      const bboxRef = footnoteRef.getBoundingClientRect();
-      const [offsetX, offsetY] = [
-        bboxRef.left - bboxSection.left,
-        bboxRef.top - bboxSection.top,
-      ];
-      span.classList.add(adjustPlacement(offsetX + 12, offsetY + 24));
-      const { id, href } = footnoteRef;
+    const footnoteItems = document.querySelectorAll(
+      "section.footnotes > ol.footnotes-list > li.footnote-item > p"
+    );
+    for (const footnoteItem of footnoteItems) {
+      // The child combinator in the query selector ensures
+      // that `footnoteItem` has a parent.
+      const footnoteId = footnoteItem.parentElement!.id;
+      const footnoteRefs = document.querySelectorAll<HTMLAnchorElement>(
+        `sup.footnote-ref > a[href='#${footnoteId}']`
+      );
       const tooltipContent = nodesToJSX(
-        [...footnoteItems[index].childNodes].filter(
+        [...footnoteItem.childNodes].filter(
           // This type assertion should be safe because the optional chain takes
           // care of the case where `n` is actually a non-`Element` `Node`.
           (n) => !(n as Element).classList?.contains("footnote-backref")
         )
       );
-      createRoot(span).render(
-        <Tooltip id={id} href={href} index={index + 1}>
-          {tooltipContent}
-        </Tooltip>
-      );
-      footnoteRef.replaceWith(span);
+      for (const footnoteRef of footnoteRefs) {
+        const newRef = document.createElement("span");
+        const bboxRef = footnoteRef.getBoundingClientRect();
+        const [offsetX, offsetY] = [
+          bboxRef.left - bboxSection.left,
+          bboxRef.top - bboxSection.top,
+        ];
+        newRef.classList.add(adjustPlacement(offsetX + 12, offsetY + 24));
+        createRoot(newRef).render(
+          <Tooltip
+            id={footnoteRef.id}
+            href={footnoteRef.href}
+            label={footnoteRef.text}
+          >
+            {tooltipContent}
+          </Tooltip>
+        );
+        footnoteRef.replaceWith(newRef);
+      }
     }
   }
 });
