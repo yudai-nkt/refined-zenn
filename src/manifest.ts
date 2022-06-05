@@ -13,7 +13,7 @@ export const manifest = defineManifest({
     {
       matches: ["https://zenn.dev/*/articles/*"],
       js: [
-        "src/content-scripts/footnote-tooltip.ts",
+        "src/content-scripts/footnote-tooltip.tsx",
         "src/content-scripts/trim-leading-prompts-in-clipboard.ts",
         "src/content-scripts/code-block-filename-as-caption.ts",
       ],
