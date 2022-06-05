@@ -8,7 +8,9 @@ type TooltipProps = Pick<HTMLAnchorElement, "href" | "id"> & {
 };
 
 const contentStyle = css`
-  background-color: ghostwhite;
+  background: var(--c-base-bg);
+  border: 1px solid var(--c-gray-border-lighter);
+  box-shadow: 2px 2px 2px #21253840;
   max-width: 400px;
   z-index: 9;
   line-height: 1.4;
