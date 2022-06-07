@@ -68,9 +68,8 @@ getConfig("footnote-tooltip").then((enabled) => {
       );
       const tooltipContent = nodesToJSX(
         [...footnoteItem.childNodes].filter(
-          // This type assertion should be safe because the optional chain takes
-          // care of the case where `n` is actually a non-`Element` `Node`.
-          (n) => !(n as Element).classList?.contains("footnote-backref")
+          (n) =>
+            !(n instanceof Element && n.classList.contains("footnote-backref"))
         )
       );
       for (const footnoteRef of footnoteRefs) {
