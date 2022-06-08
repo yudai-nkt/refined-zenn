@@ -2,42 +2,38 @@ import { Tooltip } from "./components/tooltip";
 import { createRoot } from "react-dom/client";
 import { getConfig } from "../utils";
 import { css } from "goober";
+import { createElement } from "react";
 
 /**
- * Transform an array of {@link Node}s into a {@link JSX.Element}.
- * Only a small subset is implemented so that the function is small enough
- * and yet can handle Zenn's footnotes.
+ * Transform an array of {@link Node}s into an equivalent {@link JSX.Element}.
  * @param nodes - Nodes to transform.
  * @returns Transformed JSX.
  */
 const nodesToJSX = (nodes: Node[]): JSX.Element => (
-  <p>
+  <span>
     {nodes.map((node) => {
       const { nodeName, textContent } = node;
-      switch (nodeName) {
-        case "#text":
-          return textContent;
-        case "A":
-          return (
-            <a
-              // This type assertion should be safe because the switch case
-              //ensures that `node` is an anchor element.
-              href={(node as HTMLAnchorElement).href}
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-            >
-              {textContent}
-            </a>
-          );
-        case "EM":
-          return <em>{textContent}</em>;
-        case "STRONG":
-          return <strong>{textContent}</strong>;
-        default:
-          throw new Error("Unsupported HTML element found.");
+      if (nodeName === "#text") {
+        return textContent;
+      } else if (node instanceof Element) {
+        const element = nodeName.toLowerCase();
+        const attributes = Object.fromEntries(
+          [...node.attributes].map(({ nodeName, nodeValue }) => [
+            nodeName,
+            nodeValue,
+          ])
+        );
+        return createElement(
+          element,
+          attributes,
+          nodesToJSX([...node.childNodes])
+        );
+      } else {
+        console.warn("Unsupported node found.");
+        return textContent;
       }
     })}
-  </p>
+  </span>
 );
 
 getConfig("footnote-tooltip").then((enabled) => {
