@@ -1,16 +1,9 @@
 {
-  "name": "refined-zenn",
-  "version": "0.0.0",
-  "description": "Chrome extension that brings some modifications to Zenn",
   "private": true,
-  "main": "index.js",
   "scripts": {
     "build": "vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "Yudai Nakata",
-  "license": "MIT",
   "devDependencies": {
     "@crxjs/vite-plugin": "^1.0.7",
     "@types/chrome": "^0.0.188",
