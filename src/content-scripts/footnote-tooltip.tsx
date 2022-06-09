@@ -1,7 +1,6 @@
 import { Tooltip } from "./components/tooltip";
 import { createRoot } from "react-dom/client";
 import { getConfig } from "../utils";
-import { css } from "goober";
 import { createElement } from "react";
 
 /**
@@ -38,20 +37,6 @@ const nodesToJSX = (nodes: Node[]): JSX.Element => (
 
 getConfig("footnote-tooltip").then((enabled) => {
   if (enabled) {
-    /**
-     * Workaround for incorrect placement of tooltips. Since Radix UI's
-     * Popper component inlines the transformation using the `style`
-     * attribute, use of `!important` should be justified.
-     */
-    const adjustPlacement = (x: number, y: number) => css`
-      div[data-radix-popper-content-wrapper] {
-        transform: translate3d(${x}px, ${y}px, 0px) !important;
-      }
-    `;
-    const bboxSection = document
-      .querySelector("section")!
-      .getBoundingClientRect();
-
     const footnoteItems = document.querySelectorAll(
       "section.footnotes > ol.footnotes-list > li.footnote-item > p"
     );
@@ -70,12 +55,6 @@ getConfig("footnote-tooltip").then((enabled) => {
       );
       for (const footnoteRef of footnoteRefs) {
         const newRef = document.createElement("span");
-        const bboxRef = footnoteRef.getBoundingClientRect();
-        const [offsetX, offsetY] = [
-          bboxRef.left - bboxSection.left,
-          bboxRef.top - bboxSection.top,
-        ];
-        newRef.classList.add(adjustPlacement(offsetX + 12, offsetY + 24));
         createRoot(newRef).render(
           <Tooltip
             id={footnoteRef.id}
