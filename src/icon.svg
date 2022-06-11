@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   viewBox="0 0 33.866666 33.866668"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="icon.svg"
+   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="4.3201751"
+     inkscape:cx="86.339093"
+     inkscape:cy="58.909649"
+     inkscape:window-width="1701"
+     inkscape:window-height="1035"
+     inkscape:window-x="0"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#3ea8ff;fill-opacity:1;stroke:none;stroke-width:1.79045;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect7193-5"
+       width="4.0399151"
+       height="15.436411"
+       x="-11.430063"
+       y="18.151978"
+       ry="0.5589605"
+       transform="matrix(-1,0,0.47078243,0.88224934,0,0)" />
+    <path
+       id="path1750-0-3"
+       style="fill:none;stroke:#ade4ff;stroke-width:3.175;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 18.811471,5.8208334 c 0,0 -12.9664651,0 0,0 2.922507,0 5.291667,2.36916 5.291667,5.2916666 0,2.922507 -2.36916,5.291667 -5.291667,5.291667 -16.0898923,0 0,0 0,0"
+       sodipodi:nodetypes="csssc" />
+    <rect
+       style="fill:#3ea8ff;fill-opacity:1;stroke:none;stroke-width:2.30275;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect7193"
+       width="4.0399151"
+       height="25.534018"
+       x="11.032106"
+       y="4.2556696"
+       ry="0.92460012"
+       transform="matrix(1,0,-0.10232126,0.99475141,0,0)" />
+  </g>
+</svg>
