@@ -1,4 +1,4 @@
-import { Tooltip } from "./components/tooltip";
+import { Tooltip } from "./components/Tooltip";
 import { createRoot } from "react-dom/client";
 import { getConfig } from "../utils";
 import { createElement } from "react";
@@ -8,10 +8,13 @@ import { createElement } from "react";
  * @param nodes - Nodes to transform.
  * @returns Transformed JSX.
  */
+/* eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types --
+ * Node cannot be immutable.
+ */
 const nodesToJSX = (nodes: Node[]): JSX.Element => (
   <span>
     {nodes.map((node) => {
-      const { nodeName, textContent } = node;
+      const { childNodes, nodeName, textContent } = node;
       if (nodeName === "#text") {
         return textContent;
       } else if (node instanceof Element) {
@@ -22,11 +25,7 @@ const nodesToJSX = (nodes: Node[]): JSX.Element => (
             nodeValue,
           ])
         );
-        return createElement(
-          element,
-          attributes,
-          nodesToJSX([...node.childNodes])
-        );
+        return createElement(element, attributes, nodesToJSX([...childNodes]));
       } else {
         console.warn("Unsupported node found.");
         return textContent;
@@ -35,37 +34,38 @@ const nodesToJSX = (nodes: Node[]): JSX.Element => (
   </span>
 );
 
-getConfig("footnote-tooltip").then((enabled) => {
-  if (enabled) {
-    const footnoteItems = document.querySelectorAll(
-      "section.footnotes > ol.footnotes-list > li.footnote-item > p"
+const enabled = await getConfig("footnote-tooltip");
+if (enabled) {
+  const footnoteItems = document.querySelectorAll(
+    "section.footnotes > ol.footnotes-list > li.footnote-item > p"
+  );
+  for (const footnoteItem of footnoteItems) {
+    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion --
+     * The child combinator in the query selector ensures
+     * that `footnoteItem` has a parent.
+     */
+    const footnoteId = footnoteItem.parentElement!.id;
+    const footnoteRefs = document.querySelectorAll<HTMLAnchorElement>(
+      `sup.footnote-ref > a[href='#${footnoteId}']`
     );
-    for (const footnoteItem of footnoteItems) {
-      // The child combinator in the query selector ensures
-      // that `footnoteItem` has a parent.
-      const footnoteId = footnoteItem.parentElement!.id;
-      const footnoteRefs = document.querySelectorAll<HTMLAnchorElement>(
-        `sup.footnote-ref > a[href='#${footnoteId}']`
+    const tooltipContent = nodesToJSX(
+      [...footnoteItem.childNodes].filter(
+        (n) =>
+          !(n instanceof Element && n.classList.contains("footnote-backref"))
+      )
+    );
+    for (const footnoteRef of footnoteRefs) {
+      const newRef = document.createElement("span");
+      createRoot(newRef).render(
+        <Tooltip
+          id={footnoteRef.id}
+          href={footnoteRef.href}
+          label={footnoteRef.text}
+        >
+          {tooltipContent}
+        </Tooltip>
       );
-      const tooltipContent = nodesToJSX(
-        [...footnoteItem.childNodes].filter(
-          (n) =>
-            !(n instanceof Element && n.classList.contains("footnote-backref"))
-        )
-      );
-      for (const footnoteRef of footnoteRefs) {
-        const newRef = document.createElement("span");
-        createRoot(newRef).render(
-          <Tooltip
-            id={footnoteRef.id}
-            href={footnoteRef.href}
-            label={footnoteRef.text}
-          >
-            {tooltipContent}
-          </Tooltip>
-        );
-        footnoteRef.replaceWith(newRef);
-      }
+      footnoteRef.replaceWith(newRef);
     }
   }
-});
+}

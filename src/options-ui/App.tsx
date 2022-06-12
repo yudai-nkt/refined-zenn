@@ -1,4 +1,5 @@
 import { css } from "goober";
+import { type FunctionComponent } from "react";
 import { Option, type OptionProps } from "./components/Option";
 
 const options: OptionProps[] = [
@@ -38,7 +39,7 @@ const style = css`
   gap: 16px;
 `;
 
-export const App = () => (
+export const App: FunctionComponent = () => (
   <div className={style}>
     {options.map((opt, i) => (
       <Option {...opt} key={i} />
