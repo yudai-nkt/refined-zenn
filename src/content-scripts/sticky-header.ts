@@ -7,7 +7,7 @@ if (enabled) {
     position: sticky;
     top: 0;
     z-index: 2;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
   `;
 
   const header = document.querySelector("header");

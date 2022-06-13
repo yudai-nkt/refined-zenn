@@ -11,11 +11,13 @@ export type OptionProps = {
 
 const optionContainer = css`
   color: #202124;
+
   div:first-child {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   h1 {
     font-size: 14px;
     margin-bottom: 4px;

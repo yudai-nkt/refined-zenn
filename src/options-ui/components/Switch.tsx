@@ -8,12 +8,13 @@ const rootStyle = css`
   all: unset;
   width: 28px;
   height: 12px;
-  background-color: rgb(189, 193, 198);
+  background-color: rgb(189 193 198);
   border-radius: 999px;
   position: relative;
   transition: background-color linear 80ms;
+
   &[data-state="checked"] {
-    background-color: rgba(26, 115, 232, 0.5);
+    background-color: rgb(26 115 232 / 50%);
   }
 `;
 
@@ -24,13 +25,14 @@ const thumbStyle = css`
   background-color: white;
   border-radius: 50%;
   position: relative;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 40%);
   transform: translateY(-2px);
   transition: transform linear 80ms, background-color linear 80ms;
   will-change: transform;
+
   &[data-state="checked"] {
     transform: translate(18px, -2px);
-    background-color: rgb(38, 115, 232);
+    background-color: rgb(38 115 232);
   }
 `;
 
