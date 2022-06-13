@@ -5,9 +5,12 @@
     "gen:icon": "node scripts/generate-icon.mjs",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier -c .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
     "@crxjs/vite-plugin": "^1.0.7",
     "@types/chrome": "^0.0.188",
     "@types/react": "^18.0.11",
@@ -22,6 +25,8 @@
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-unicorn": "^42.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.1",
     "prettier": "^2.6.2",
     "sharp": "^0.30.6",
     "typescript": "^4.6.4",
