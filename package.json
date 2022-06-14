@@ -5,7 +5,7 @@
     "gen:icon": "node scripts/generate-icon.mjs",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier --ignore-path .gitignore --check .",
-    "lint:stylelint": "stylelint src/**/*.{ts,tsx}",
+    "lint:stylelint": "stylelint 'src/**/*.{ts,tsx}'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
