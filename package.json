@@ -4,7 +4,7 @@
     "build": "vite build",
     "gen:icon": "node scripts/generate-icon.mjs",
     "lint:eslint": "eslint .",
-    "lint:prettier": "prettier -c .",
+    "lint:prettier": "prettier --ignore-path .gitignore -c .",
     "lint:stylelint": "stylelint src/**/*.{ts,tsx}",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
