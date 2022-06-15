@@ -16,7 +16,7 @@ const options: OptionProps[] = [
       "ページをスクロールしてもヘッダーが固定されて見えるようにします．",
   },
   {
-    id: "trim-leading-prompts-in-clipboard",
+    id: "no-leading-prompts-in-clipboard",
     title: "コードブロックのコピー時にプロンプトを削除",
     description:
       "ターミナル操作のコードブロックをコピーする際，行頭のプロンプトを自動で削除します．",

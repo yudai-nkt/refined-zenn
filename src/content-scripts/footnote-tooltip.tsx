@@ -1,4 +1,4 @@
-import { Tooltip } from "./components/Tooltip";
+import { AnchorTooltip } from "./components/AnchorTooltip";
 import { createRoot } from "react-dom/client";
 import { getConfig } from "../utils";
 import { createElement } from "react";
@@ -57,13 +57,13 @@ if (enabled) {
     for (const footnoteRef of footnoteRefs) {
       const newRef = document.createElement("span");
       createRoot(newRef).render(
-        <Tooltip
+        <AnchorTooltip
           id={footnoteRef.id}
           href={footnoteRef.href}
           label={footnoteRef.text}
         >
           {tooltipContent}
-        </Tooltip>
+        </AnchorTooltip>
       );
       footnoteRef.replaceWith(newRef);
     }

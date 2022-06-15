@@ -1,6 +1,6 @@
 import { getConfig } from "../utils";
 
-const enabled = await getConfig("trim-leading-prompts-in-clipboard");
+const enabled = await getConfig("no-leading-prompts-in-clipboard");
 if (enabled) {
   const trimLeadingPrompts = (code: string): string =>
     code

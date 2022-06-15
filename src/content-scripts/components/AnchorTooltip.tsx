@@ -2,7 +2,7 @@ import * as RadixTooltip from "@radix-ui/react-tooltip";
 import { css } from "goober";
 import type { ReactNode, FunctionComponent } from "react";
 
-type TooltipProps = Pick<HTMLAnchorElement, "href" | "id"> & {
+type AnchorTooltipProps = Pick<HTMLAnchorElement, "href" | "id"> & {
   label: string;
   children: ReactNode;
 };
@@ -19,7 +19,7 @@ const contentStyle = css`
   box-shadow: 2px 2px 2px #21253840;
 `;
 
-export const Tooltip: FunctionComponent<TooltipProps> = ({
+export const AnchorTooltip: FunctionComponent<AnchorTooltipProps> = ({
   label,
   children,
   ...anchorAttributes
