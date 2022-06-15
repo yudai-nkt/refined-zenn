@@ -29,7 +29,11 @@ export const AnchorTooltip: FunctionComponent<AnchorTooltipProps> = ({
       <a {...anchorAttributes}>{label}</a>
     </RadixTooltip.Trigger>
     <RadixTooltip.Portal>
-      <RadixTooltip.Content className={`znc ${contentStyle}`} align="start">
+      <RadixTooltip.Content
+        className={`znc ${contentStyle}`}
+        align="start"
+        side="top"
+      >
         {children}
       </RadixTooltip.Content>
     </RadixTooltip.Portal>
