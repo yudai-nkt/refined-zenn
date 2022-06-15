@@ -14,13 +14,13 @@ const optionContainer = css`
 
   div:first-child {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
   }
 
   h1 {
-    font-size: 14px;
     margin-bottom: 4px;
+    font-size: 14px;
   }
 `;
 

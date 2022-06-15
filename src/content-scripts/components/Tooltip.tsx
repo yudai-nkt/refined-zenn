@@ -8,15 +8,15 @@ type TooltipProps = Pick<HTMLAnchorElement, "href" | "id"> & {
 };
 
 const contentStyle = css`
+  z-index: 9;
+  max-width: 400px;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 1.4;
   background: var(--c-base-bg);
   border: 1px solid var(--c-gray-border-lighter);
-  box-shadow: 2px 2px 2px #21253840;
-  max-width: 400px;
-  z-index: 9;
-  line-height: 1.4;
-  font-size: 12px;
-  padding: 5px;
   border-radius: 4px;
+  box-shadow: 2px 2px 2px #21253840;
 `;
 
 export const Tooltip: FunctionComponent<TooltipProps> = ({

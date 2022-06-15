@@ -30,13 +30,13 @@ const options: OptionProps[] = [
 ].sort((a, b) => a.id.localeCompare(b.id, "en"));
 
 const style = css`
-  min-width: 480px;
-  min-height: 300px;
-  padding-left: 12px;
-  padding-right: 12px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 480px;
+  min-height: 300px;
+  padding-right: 12px;
+  padding-left: 12px;
 `;
 
 export const App: FunctionComponent = () => (
