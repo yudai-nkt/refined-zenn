@@ -9,7 +9,9 @@
     "lint:stylelint": "stylelint 'src/**/*.{ts,tsx}'",
     "lint:tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prezip": "run-s lint gen:icon build",
+    "zip": "zip -r refined-zenn.zip dist"
   },
   "dependencies": {
     "@radix-ui/react-switch": "^0.1.6-rc.31",
