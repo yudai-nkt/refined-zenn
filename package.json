@@ -3,6 +3,7 @@
   "scripts": {
     "build": "vite build",
     "gen:icon": "node scripts/generate-icon.mjs",
+    "lint": "run-s --continue-on-error 'lint:*'",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier --ignore-path .gitignore --check .",
     "lint:stylelint": "stylelint 'src/**/*.{ts,tsx}'",
@@ -38,6 +39,7 @@
     "eslint-plugin-unicorn": "^42.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.1",
+    "npm-run-all": "^4.1.5",
     "postcss-syntax": "^0.36.2",
     "prettier": "^2.6.2",
     "sharp": "^0.30.6",
