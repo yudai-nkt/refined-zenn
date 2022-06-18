@@ -3,7 +3,7 @@ import { defineManifest } from "@crxjs/vite-plugin";
 export const manifest = defineManifest({
   manifest_version: 3,
   name: "Refined Zenn",
-  description: "Zennの機能やUIの一部を変更するChrome拡張機能です．",
+  description: "Zennの機能やUIの一部を変更します．",
   version: "0.1.0",
   minimum_chrome_version: "89",
   icons: {
